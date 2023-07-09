@@ -65,7 +65,7 @@ const AddForm: React.FC<IProps> = ({title, btnTitle, editMeal}) => {
             <div className="col-9 m-auto mt-5 mb-5">
                 {
                     title ? (<h4>{title}</h4>) :
-                        <h4>Submit a new meal</h4>
+                        <h4>Add a new meal</h4>
                 }
                 {loading ? (
                     <Spinner />
