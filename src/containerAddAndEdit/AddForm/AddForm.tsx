@@ -86,7 +86,6 @@ const AddForm: React.FC<IProps> = ({title, btnTitle, editMeal}) => {
                                 <option value="snack">Snack</option>
                                 <option value="lunch">Lunch</option>
                                 <option value="=dinner">Dinner</option>
-
                             </select>
                         </div>
                         <div className="form-group mt-3">
