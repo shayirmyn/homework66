@@ -46,17 +46,19 @@ const AddForm: React.FC<IProps> = ({title, btnTitle, editMeal}) => {
 
     const onFormSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        setLoading(true);
-
         try {
             if (editMeal) {
+                setLoading(true);
                 await axiosApi.put(`/meals/${id}.json`, submitData);
             } else {
+                setLoading(true);
                 await axiosApi.post("/meals.json", submitData);
+                navigate("/");
             }
+        } catch (e) {
+            console.error(e);
         } finally {
             setLoading(false);
-            navigate("/");
         }
     };
 
@@ -85,7 +87,7 @@ const AddForm: React.FC<IProps> = ({title, btnTitle, editMeal}) => {
                                 <option value="breakfast">Breakfast</option>
                                 <option value="snack">Snack</option>
                                 <option value="lunch">Lunch</option>
-                                <option value="=dinner">Dinner</option>
+                                <option value="dinner">Dinner</option>
                             </select>
                         </div>
                         <div className="form-group mt-3">
@@ -121,7 +123,7 @@ const AddForm: React.FC<IProps> = ({title, btnTitle, editMeal}) => {
                                 type="submit"
                                 className="btn btn-primary ms-auto d-block mt-3 me-2"
                             >
-                                Send
+                                Add
                             </button>
                         }
                     </form>

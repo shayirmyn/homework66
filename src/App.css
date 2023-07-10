@@ -19,6 +19,7 @@
   margin: auto;
 }
 
-.innerPost {
-  width: 500px;
+.span {
+  color: #252424;
+  font-weight: 300;
 }

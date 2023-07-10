@@ -18,6 +18,8 @@ const EditForm = () => {
             setLoading(true);
             const getOneMeal = await axiosApi.get<ISubmit>(`/meals/${id}.json`);
             setEditMeal(getOneMeal.data);
+        } catch (e) {
+            console.error(e);
         } finally {
             setLoading(false);
         }
@@ -33,7 +35,7 @@ const EditForm = () => {
         <div>
             {!loading && editMeal ? (
                 <AddForm
-                    title="Edit a quote"
+                    title="Edit Meal"
                     btnTitle="Save"
                     editMeal={editMeal}
                 />

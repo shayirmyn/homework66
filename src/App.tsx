@@ -1,8 +1,8 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
-import AddForm from "./containerAddAndEdit/AddForm/AddForm";
-import EditForm from "./containerAddAndEdit/EditForm/EditForm";
-import Get from "./containerGet/Get/Get";
+import AddForm from "./container/AddForm/AddForm";
+import EditForm from "./container/EditForm/EditForm";
+import Get from "./container/Get/Get";
 import NavHead from "./components/NavHead/NavHead";
 import './App.css';
 

@@ -8,11 +8,8 @@ const NavHead = () => {
                 <div className="container-fluid">
                         <span className="navbar-brand ms-5">
                             <NavLink className="nav-link" to="/">
-                                Calories Tracker
+                                Calories tracker
                             </NavLink>
-                        </span>
-                    <span>
-                            <NavLink to="/new-meal" className="btn btn-primary me-5">Add meal</NavLink>
                         </span>
                 </div>
             </nav>

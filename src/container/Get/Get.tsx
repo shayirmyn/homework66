@@ -1,13 +1,18 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {IApiGet, IGet} from "../../types";
 import axiosApi from "../../axiosApi";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import Spinner from "../../components/Spinner/Spinner";
 
 const Get = () => {
 
     const [meals, setMeals] = useState<IGet[]>([]);
+
     const [loading, setLoading] = useState(false);
+
+    const total = meals.reduce((acc, value) => {
+        return acc + parseFloat(value.calories);
+    }, 0)
 
     const fetchData = useCallback(async () => {
         try {
@@ -20,9 +25,10 @@ const Get = () => {
                         id: key,
                     };
                 });
-
                 setMeals(getMeals);
             }
+        } catch (e) {
+            console.error(e);
         } finally {
             setLoading(false);
         }
@@ -40,25 +46,34 @@ const Get = () => {
 
     const deleteRequest = useCallback(async (id: string) => {
         try {
+            setLoading(true);
             await axiosApi.delete(`/meals/${id}.json`);
             setMeals((prevState) => prevState.filter((every) => every.id !== id));
         } catch (e) {
             console.error(e);
+        } finally {
+            setLoading(false);
         }
     }, []);
 
     return (
         <div className="card text-center postCard shadow-lg p-3 mt-5 bg-body-tertiary">
-            <h4 className="card-header d-block me-auto ms-2 bg-body-tertiary shadow-lg">
-                Meals
-            </h4>
+            <div  className="bg-body-tertiary shadow-lg card-header">
+                <h4 className="d-inline-block me-5">
+                    Meals calories: {total}
+                </h4>
+                <span className="ms-5 d-inline-block">
+                <NavLink to="/new-meal" className="btn btn-primary">Add meal</NavLink>
+            </span>
+            </div>
             {loading ? (<Spinner />): (
                 meals.map((every: IGet) => (
                     <div key={every.id}>
                         <div className="innerPost mt-2 mb-2 shadow-lg p-2 bg-body-tertiary">
-                            <div className="card-header">Meals</div>
+                            <h5 className="card-header"><span className="span">Time meal:</span> {every.meal}</h5>
                             <div className="card-body">
-                                <h5 className="card-title">{every.meal}</h5>
+                                <p>To eat: <strong>{every.description}</strong></p>
+                                <p>Calories: <strong>{every.calories}</strong></p>
                                 <Link
                                     className="btn btn-primary"
                                     to={`/meals/${every.id}/edit`}
