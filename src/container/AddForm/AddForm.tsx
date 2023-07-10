@@ -3,6 +3,7 @@ import {ISubmit} from "../../types";
 import {useNavigate, useParams} from "react-router-dom";
 import axiosApi from "../../axiosApi";
 import Spinner from "../../components/Spinner/Spinner";
+import ButtonSpinner from "../../components/Spinner/ButtonSpinner";
 
 
 interface IProps {
@@ -69,9 +70,6 @@ const AddForm: React.FC<IProps> = ({title, btnTitle, editMeal}) => {
                     title ? (<h4>{title}</h4>) :
                         <h4>Add a new meal</h4>
                 }
-                {loading ? (
-                    <Spinner />
-                ) : (
                     <form onSubmit={onFormSubmit}>
                         <div className="form-group mt-3">
                             <select
@@ -105,6 +103,7 @@ const AddForm: React.FC<IProps> = ({title, btnTitle, editMeal}) => {
                         <div className="form-group mt-3">
                             <label htmlFor="description">Calories</label>
                             <input
+                                type="number"
                                 id="calories"
                                 value={submitData.calories}
                                 onChange={dataChanged}
@@ -113,21 +112,14 @@ const AddForm: React.FC<IProps> = ({title, btnTitle, editMeal}) => {
                                 required
                             />
                         </div>
-                        {
-                            btnTitle ? (<button
+                        <button disabled={loading}
                                 type="submit"
                                 className="btn btn-primary ms-auto d-block mt-3 me-2"
                             >
-                                {btnTitle}
-                            </button>) : <button
-                                type="submit"
-                                className="btn btn-primary ms-auto d-block mt-3 me-2"
-                            >
-                                Add
+                                {loading && <ButtonSpinner />}
+                                {btnTitle ? btnTitle : (<>Add</>)}
                             </button>
-                        }
                     </form>
-                )}
             </div>
         </div>
     );

@@ -12,7 +12,7 @@ const Get = () => {
 
     const total = meals.reduce((acc, value) => {
         return acc + parseFloat(value.calories);
-    }, 0)
+    }, 0);
 
     const fetchData = useCallback(async () => {
         try {
