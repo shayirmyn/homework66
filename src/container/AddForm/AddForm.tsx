@@ -112,8 +112,7 @@ const AddForm: React.FC<IProps> = ({title, btnTitle, editMeal}) => {
                                 type="submit"
                                 className="btn btn-primary ms-auto d-block mt-3 me-2"
                             >
-                                {loading && <ButtonSpinner />}
-                                {btnTitle ? btnTitle : (<>Add</>)}
+                                {loading ? (<ButtonSpinner />) : (btnTitle ? btnTitle : (<>Add</>))}
                             </button>
                     </form>
             </div>
