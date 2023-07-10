@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {ISubmit} from "../../types";
 import {useNavigate, useParams} from "react-router-dom";
 import axiosApi from "../../axiosApi";
-import Spinner from "../../components/Spinner/Spinner";
 import ButtonSpinner from "../../components/Spinner/ButtonSpinner";
 
 
@@ -66,10 +65,7 @@ const AddForm: React.FC<IProps> = ({title, btnTitle, editMeal}) => {
     return (
         <div className="mt-5 formDiv shadow-lg p-3 mb-5 bg-body-tertiary rounded">
             <div className="col-9 m-auto mt-5 mb-5">
-                {
-                    title ? (<h4>{title}</h4>) :
-                        <h4>Add a new meal</h4>
-                }
+                {title ? title : (<h4>Add a new meal</h4>)}
                     <form onSubmit={onFormSubmit}>
                         <div className="form-group mt-3">
                             <select
